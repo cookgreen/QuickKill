@@ -2,7 +2,7 @@
 Software cracking tool based on DeepSeek LLM  
 ## Features
 - Integrate DeepSeek LLM
-- Guide the softwareG cracking
+- Guide the software cracking
 
 ## Based on  
 DeepSeek - Open Source and Free LLM  
