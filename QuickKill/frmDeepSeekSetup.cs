@@ -32,12 +32,14 @@ namespace QuickKill
                 return;
             }
 
-            DeepSeekApi deepSeekApi = new DeepSeekApi(txtAPI.Text);
+            DeepSeekApi deepSeekApi = DeepSeekApiFactory.Instance.CreateApiByProvider(
+                txtAPI.Text, cmbProviders.SelectedItem.ToString());
+
             var returnVal = await deepSeekApi.GetBalance();
 
             btnOK.Enabled = true;
 
-            if (returnVal.Item2 == "error")
+            if (!returnVal.Result)
             {
                 MessageBox.Show("Autherized Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

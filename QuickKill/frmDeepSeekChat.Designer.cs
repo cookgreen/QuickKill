@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             chatList = new ListBox();
             txtChatMessage = new TextBox();
             btnSend = new Button();
-            label1 = new Label();
+            lbSelectModel = new Label();
             cmbModelList = new ComboBox();
-            label2 = new Label();
+            lbBalanceText = new Label();
             lbBalance = new Label();
-            timer = new System.Windows.Forms.Timer(components);
             picHeader = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picHeader).BeginInit();
             SuspendLayout();
@@ -66,14 +64,14 @@
             btnSend.UseVisualStyleBackColor = true;
             btnSend.Click += btnSend_Click;
             // 
-            // label1
+            // lbSelectModel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(11, 126);
-            label1.Name = "label1";
-            label1.Size = new Size(110, 20);
-            label1.TabIndex = 3;
-            label1.Text = "Select Model:";
+            lbSelectModel.AutoSize = true;
+            lbSelectModel.Location = new Point(11, 126);
+            lbSelectModel.Name = "lbSelectModel";
+            lbSelectModel.Size = new Size(110, 20);
+            lbSelectModel.TabIndex = 3;
+            lbSelectModel.Text = "Select Model:";
             // 
             // cmbModelList
             // 
@@ -84,15 +82,15 @@
             cmbModelList.Size = new Size(151, 28);
             cmbModelList.TabIndex = 4;
             // 
-            // label2
+            // lbBalanceText
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            label2.Location = new Point(450, 123);
-            label2.Name = "label2";
-            label2.Size = new Size(97, 27);
-            label2.TabIndex = 5;
-            label2.Text = "Balance:";
+            lbBalanceText.AutoSize = true;
+            lbBalanceText.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            lbBalanceText.Location = new Point(450, 123);
+            lbBalanceText.Name = "lbBalanceText";
+            lbBalanceText.Size = new Size(97, 27);
+            lbBalanceText.TabIndex = 5;
+            lbBalanceText.Text = "Balance:";
             // 
             // lbBalance
             // 
@@ -102,10 +100,6 @@
             lbBalance.Size = new Size(18, 20);
             lbBalance.TabIndex = 6;
             lbBalance.Text = "0";
-            // 
-            // timer
-            // 
-            timer.Tick += timer_Tick;
             // 
             // picHeader
             // 
@@ -124,9 +118,9 @@
             ClientSize = new Size(606, 630);
             Controls.Add(picHeader);
             Controls.Add(lbBalance);
-            Controls.Add(label2);
+            Controls.Add(lbBalanceText);
             Controls.Add(cmbModelList);
-            Controls.Add(label1);
+            Controls.Add(lbSelectModel);
             Controls.Add(btnSend);
             Controls.Add(txtChatMessage);
             Controls.Add(chatList);
@@ -138,6 +132,8 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chat with DeepSeek";
+            FormClosing += frmDeepSeekChat_FormClosing;
+            Load += frmDeepSeekChat_Load;
             ((System.ComponentModel.ISupportInitialize)picHeader).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -148,11 +144,10 @@
         private ListBox chatList;
         private TextBox txtChatMessage;
         private Button btnSend;
-        private Label label1;
+        private Label lbSelectModel;
         private ComboBox cmbModelList;
-        private Label label2;
+        private Label lbBalanceText;
         private Label lbBalance;
-        private System.Windows.Forms.Timer timer;
         private PictureBox picHeader;
     }
 }

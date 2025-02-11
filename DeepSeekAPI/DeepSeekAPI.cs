@@ -5,19 +5,41 @@ using RestSharp;
 
 namespace DeepSeekAPI
 {
-    public class DeepSeekApi
+    public class DeepSeekCallResult
+    {
+        private bool result;
+        private object data;
+
+        public bool Result { get { return result; } }
+        public object Data { get { return data; } }
+
+        public DeepSeekCallResult(bool result, object data)
+        {
+            this.result = result;
+            this.data = data;
+        }
+    }
+
+    public class DeepSeekApi : IDeepSeekApiProvider
     {
         private string apiKey;
+        protected string baseUrl;
+
+        public virtual string ProviderName { get { return "DeepSeek"; } }
+        public string ApiKey { get { return apiKey; } }
 
         public DeepSeekApi(string apiKey)
         {
+            baseUrl = "https://api.deepseek.com";
             this.apiKey = apiKey;
         }
 
-        public async Task<Tuple<object, string>> GetModelList()
+        public async Task<DeepSeekCallResult> GetModelList()
         {
+            object data = null;
+
             var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Get, "https://api.deepseek.com/models");
+            var request = new HttpRequestMessage(HttpMethod.Get, baseUrl + "/models");
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("Authorization", "Bearer " + apiKey);
             var response = await client.SendAsync(request);
@@ -25,18 +47,22 @@ namespace DeepSeekAPI
             string jsonContent = await response.Content.ReadAsStringAsync();
             if (jsonContent.Contains("error"))
             {
-                return new Tuple<object, string>(JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekErrorMessage)), "error");
+                data = JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekErrorMessage));
+                return new DeepSeekCallResult(false, data);
             }
             else
             {
-                return new Tuple<object, string>(JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekModelReturnValue)), "data");
+                data = JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekModelReturnValue));
+                return new DeepSeekCallResult(false, data);
             }
         }
 
-        public async Task<Tuple<object, string>> Chat(string message, string model)
+        public async Task<DeepSeekCallResult> Chat(string message, string model)
         {
+            object data = null;
+
             var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://api.deepseek.com/chat/completions");
+            var request = new HttpRequestMessage(HttpMethod.Post, baseUrl + "/chat/completions");
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("Authorization", "Bearer " + apiKey);
 
@@ -57,18 +83,22 @@ namespace DeepSeekAPI
             string jsonContent = await response.Content.ReadAsStringAsync();
             if (jsonContent.Contains("error"))
             {
-                return new Tuple<object, string>(JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekErrorMessageReturnValue)), "error");
+                data = JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekErrorMessageReturnValue));
+                return new DeepSeekCallResult(false, data);
             }
             else
             {
-                return new Tuple<object, string>(JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekChatResponseMessage)), "data");
+                data = JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekChatResponseMessage));
+                return new DeepSeekCallResult(true, data);
             }
         }
 
-        public async Task<Tuple<object, string>> GetBalance()
+        public async Task<DeepSeekCallResult> GetBalance()
         {
+            object data = null;
+
             var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Get, "https://api.deepseek.com/user/balance");
+            var request = new HttpRequestMessage(HttpMethod.Get, baseUrl + "/user/balance");
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("Authorization", "Bearer " + apiKey);
             var response = await client.SendAsync(request);
@@ -76,11 +106,13 @@ namespace DeepSeekAPI
             string jsonContent = await response.Content.ReadAsStringAsync();
             if (jsonContent.Contains("error"))
             {
-                return new Tuple<object, string>(JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekErrorMessage)), "error");
+                data = JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekErrorMessage));
+                return new DeepSeekCallResult(false, data);
             }
             else
             {
-                return new Tuple<object, string>(JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekBalance)), "data");
+                data = JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekBalance));
+                return new DeepSeekCallResult(true, data);
             }
         }
     }

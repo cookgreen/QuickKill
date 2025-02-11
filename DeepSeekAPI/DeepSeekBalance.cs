@@ -9,7 +9,7 @@ namespace DeepSeekAPI
     public class DeepSeekBalance
     {
         public bool is_avaiable { get; set; }
-        public DeepSeekBalanceInfo info { get; set; } = null;
+        public List<DeepSeekBalanceInfo> balance_infos { get; set; } = null;
     }
 
     public class DeepSeekBalanceInfo

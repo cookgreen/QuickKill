@@ -87,7 +87,7 @@
             // 
             cmbProviders.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProviders.FormattingEnabled = true;
-            cmbProviders.Items.AddRange(new object[] { "DeepSeek", "Amazon", "Microsoft", "Nvidia" });
+            cmbProviders.Items.AddRange(new object[] { "DeepSeek", "Nvidia" });
             cmbProviders.Location = new Point(363, 283);
             cmbProviders.Name = "cmbProviders";
             cmbProviders.Size = new Size(116, 28);

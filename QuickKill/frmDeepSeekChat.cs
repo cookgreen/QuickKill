@@ -13,26 +13,64 @@ namespace QuickKill
 {
     public partial class frmDeepSeekChat : Form
     {
+        private System.Timers.Timer timer;
         private DeepSeekApi deepSeekApi;
+        private delegate void SetLabelTextDelegate(Label label, string text);
+        private SetLabelTextDelegate setLabelTextDelegateObject;
 
         public frmDeepSeekChat(DeepSeekApi deepSeekApi)
         {
             this.deepSeekApi = deepSeekApi;
             InitializeComponent();
+
+            setLabelTextDelegateObject = new SetLabelTextDelegate(SetLabelTextDelegateMethod);
+
+            timer = new System.Timers.Timer(150);
+            timer.AutoReset = true;
+            timer.Elapsed += (o, e) =>
+            {
+                var balanceInfo = ((DeepSeekBalance)deepSeekApi
+                .GetBalance().Result.Data)
+                .balance_infos[0];
+
+                string balance = string.Format("{0} {1}", balanceInfo.total_balance, balanceInfo.currency);
+
+                SetLabelTextDelegateMethod(lbBalance, balance);
+            };
+            timer.Start();
+
             getModels();
+        }
+
+        private void SetLabelTextDelegateMethod(Label label, string text)
+        {
+            if (label.InvokeRequired)
+            {
+                label.Invoke(setLabelTextDelegateObject, label, text);
+            }
+            else
+            {
+                label.Text = text;
+                lbBalance.Left = Width - 20 - lbBalance.Width;
+                lbBalanceText.Left = lbBalance.Left - lbBalance.Width - 15;
+            }
+        }
+
+        private void frmDeepSeekChat_Load(object sender, EventArgs e)
+        {
         }
 
         private async void getModels()
         {
             var retValue = await deepSeekApi.GetModelList();
-            if (retValue.Item2 == "data")
+            if (retValue.Result)
             {
-                DeepSeekModelReturnValue ret = retValue.Item1 as DeepSeekModelReturnValue;
+                DeepSeekModelReturnValue ret = retValue.Data as DeepSeekModelReturnValue;
                 foreach (var item in ret.data)
                 {
                     cmbModelList.Items.Add(item.id);
                 }
-                if (cmbModelList.Items.Count > 0) 
+                if (cmbModelList.Items.Count > 0)
                 {
                     cmbModelList.SelectedIndex = 0;
                 }
@@ -50,21 +88,21 @@ namespace QuickKill
             chatList.Items.Add(txtChatMessage.Text);
 
             var retVal = await deepSeekApi.Chat(txtChatMessage.Text, cmbModelList.SelectedItem.ToString());
-            if (retVal.Item2 == "error")
+            if (!retVal.Result)
             {
-                var msg = (DeepSeekErrorMessageReturnValue)retVal.Item1;
+                var msg = (DeepSeekErrorMessageReturnValue)retVal.Data;
                 chatList.Items.Add("Error: " + msg.error.message);
             }
             else
             {
-                var responseMsg = (DeepSeekChatResponseMessage)retVal.Item1;
+                var responseMsg = (DeepSeekChatResponseMessage)retVal.Data;
                 chatList.Items.Add(responseMsg.choices[0].message);
             }
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void frmDeepSeekChat_FormClosing(object sender, FormClosingEventArgs e)
         {
-            lbBalance.Text = ((DeepSeekBalance)deepSeekApi.GetBalance().Result.Item1).info.total_balance;
+            timer.Stop();
         }
     }
 }

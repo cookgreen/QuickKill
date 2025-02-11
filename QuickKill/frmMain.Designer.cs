@@ -28,50 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            label1 = new Label();
+            lbBalanceText = new Label();
             lbBalance = new Label();
-            timer = new System.Windows.Forms.Timer(components);
-            menuStrip1 = new MenuStrip();
+            menu = new MenuStrip();
             mnuFile = new ToolStripMenuItem();
             mnuFileExit = new ToolStripMenuItem();
             mnuTool = new ToolStripMenuItem();
             mnuToolChat = new ToolStripMenuItem();
-            menuStrip1.SuspendLayout();
+            menu.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // lbBalanceText
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft YaHei UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            label1.Location = new Point(642, 35);
-            label1.Name = "label1";
-            label1.Size = new Size(85, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Balance:";
+            lbBalanceText.AutoSize = true;
+            lbBalanceText.Font = new Font("Microsoft YaHei UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            lbBalanceText.Location = new Point(1034, 43);
+            lbBalanceText.Name = "lbBalanceText";
+            lbBalanceText.Size = new Size(85, 25);
+            lbBalanceText.TabIndex = 0;
+            lbBalanceText.Text = "Balance:";
             // 
             // lbBalance
             // 
             lbBalance.AutoSize = true;
-            lbBalance.Location = new Point(756, 40);
+            lbBalance.Location = new Point(1131, 46);
             lbBalance.Name = "lbBalance";
             lbBalance.Size = new Size(18, 20);
             lbBalance.TabIndex = 1;
             lbBalance.Text = "0";
             // 
-            // timer
+            // menu
             // 
-            timer.Tick += timer_Tick;
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { mnuFile, mnuTool });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 28);
-            menuStrip1.TabIndex = 2;
-            menuStrip1.Text = "menuStrip1";
+            menu.ImageScalingSize = new Size(20, 20);
+            menu.Items.AddRange(new ToolStripItem[] { mnuFile, mnuTool });
+            menu.Location = new Point(0, 0);
+            menu.Name = "menu";
+            menu.Size = new Size(1168, 28);
+            menu.TabIndex = 2;
+            menu.Text = "menuStrip1";
             // 
             // mnuFile
             // 
@@ -83,7 +77,7 @@
             // mnuFileExit
             // 
             mnuFileExit.Name = "mnuFileExit";
-            mnuFileExit.Size = new Size(224, 26);
+            mnuFileExit.Size = new Size(118, 26);
             mnuFileExit.Text = "Exit";
             mnuFileExit.Click += mnuFileExit_Click;
             // 
@@ -97,7 +91,7 @@
             // mnuToolChat
             // 
             mnuToolChat.Name = "mnuToolChat";
-            mnuToolChat.Size = new Size(224, 26);
+            mnuToolChat.Size = new Size(125, 26);
             mnuToolChat.Text = "Chat";
             mnuToolChat.Click += mnuToolChat_Click;
             // 
@@ -105,26 +99,27 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 554);
+            ClientSize = new Size(1168, 607);
             Controls.Add(lbBalance);
-            Controls.Add(label1);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(lbBalanceText);
+            Controls.Add(menu);
+            MainMenuStrip = menu;
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "QuickKill Analyzer";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            FormClosing += frmMain_FormClosing;
+            Load += frmMain_Load;
+            menu.ResumeLayout(false);
+            menu.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private Label lbBalanceText;
         private Label lbBalance;
-        private System.Windows.Forms.Timer timer;
-        private MenuStrip menuStrip1;
+        private MenuStrip menu;
         private ToolStripMenuItem mnuFile;
         private ToolStripMenuItem mnuFileExit;
         private ToolStripMenuItem mnuTool;
