@@ -30,7 +30,7 @@
         {
             pictureBox1 = new PictureBox();
             label1 = new Label();
-            textBox1 = new TextBox();
+            txtAPI = new TextBox();
             btnCancel = new Button();
             btnOK = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -55,12 +55,12 @@
             label1.TabIndex = 1;
             label1.Text = "API:";
             // 
-            // textBox1
+            // txtAPI
             // 
-            textBox1.Location = new Point(55, 284);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(391, 27);
-            textBox1.TabIndex = 2;
+            txtAPI.Location = new Point(55, 284);
+            txtAPI.Name = "txtAPI";
+            txtAPI.Size = new Size(391, 27);
+            txtAPI.TabIndex = 2;
             // 
             // btnCancel
             // 
@@ -70,6 +70,7 @@
             btnCancel.TabIndex = 3;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnOK
             // 
@@ -79,6 +80,7 @@
             btnOK.TabIndex = 4;
             btnOK.Text = "OK";
             btnOK.UseVisualStyleBackColor = true;
+            btnOK.Click += btnOK_Click;
             // 
             // frmDeepSeekSetup
             // 
@@ -87,7 +89,7 @@
             ClientSize = new Size(458, 514);
             Controls.Add(btnOK);
             Controls.Add(btnCancel);
-            Controls.Add(textBox1);
+            Controls.Add(txtAPI);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -105,7 +107,7 @@
 
         private PictureBox pictureBox1;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtAPI;
         private Button btnCancel;
         private Button btnOK;
     }

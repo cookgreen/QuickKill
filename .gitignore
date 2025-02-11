@@ -1,4 +1,5 @@
 .vs/*
+Bin/*
 */bin/*
 */obj/*
 *.exe

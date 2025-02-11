@@ -11,7 +11,13 @@ namespace QuickKill
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmMain());
+
+            frmDeepSeekSetup deepSeekSetupWin = new frmDeepSeekSetup();
+            if (deepSeekSetupWin.ShowDialog() == DialogResult.OK)
+            {
+                frmMain mainWindow = new frmMain(deepSeekSetupWin.APIKey);
+                Application.Run(mainWindow);
+            }
         }
     }
 }
