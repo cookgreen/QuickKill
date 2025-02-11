@@ -18,6 +18,7 @@ namespace QuickKill
         public frmDeepSeekSetup()
         {
             InitializeComponent();
+            cmbProviders.SelectedIndex = 0;
         }
 
         private async void btnOK_Click(object sender, EventArgs e)

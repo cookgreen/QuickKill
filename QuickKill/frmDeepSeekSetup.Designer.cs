@@ -33,6 +33,7 @@
             txtAPI = new TextBox();
             btnCancel = new Button();
             btnOK = new Button();
+            cmbProviders = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -41,7 +42,7 @@
             pictureBox1.Image = Properties.Resources.deepseek_logo;
             pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(434, 242);
+            pictureBox1.Size = new Size(467, 265);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -59,12 +60,12 @@
             // 
             txtAPI.Location = new Point(55, 284);
             txtAPI.Name = "txtAPI";
-            txtAPI.Size = new Size(391, 27);
+            txtAPI.Size = new Size(302, 27);
             txtAPI.TabIndex = 2;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(330, 455);
+            btnCancel.Location = new Point(363, 455);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(116, 47);
             btnCancel.TabIndex = 3;
@@ -74,7 +75,7 @@
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(196, 455);
+            btnOK.Location = new Point(229, 455);
             btnOK.Name = "btnOK";
             btnOK.Size = new Size(116, 47);
             btnOK.TabIndex = 4;
@@ -82,11 +83,22 @@
             btnOK.UseVisualStyleBackColor = true;
             btnOK.Click += btnOK_Click;
             // 
+            // cmbProviders
+            // 
+            cmbProviders.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbProviders.FormattingEnabled = true;
+            cmbProviders.Items.AddRange(new object[] { "DeepSeek", "Amazon", "Microsoft", "Nvidia" });
+            cmbProviders.Location = new Point(363, 283);
+            cmbProviders.Name = "cmbProviders";
+            cmbProviders.Size = new Size(116, 28);
+            cmbProviders.TabIndex = 5;
+            // 
             // frmDeepSeekSetup
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(458, 514);
+            ClientSize = new Size(491, 514);
+            Controls.Add(cmbProviders);
             Controls.Add(btnOK);
             Controls.Add(btnCancel);
             Controls.Add(txtAPI);
@@ -110,5 +122,6 @@
         private TextBox txtAPI;
         private Button btnCancel;
         private Button btnOK;
+        private ComboBox cmbProviders;
     }
 }
