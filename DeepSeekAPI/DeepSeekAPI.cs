@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 using RestSharp;
 
@@ -38,18 +39,29 @@ namespace DeepSeekAPI
             var request = new HttpRequestMessage(HttpMethod.Post, "https://api.deepseek.com/chat/completions");
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("Authorization", "Bearer " + apiKey);
-            var content = new StringContent("{\n  \"messages\": [\n    {\n      \"content\": \"You are a helpful assistant\",\n      \"role\": \"system\"\n    },\n    {\n      \"content\": \"Hi\",\n      \"role\": \"user\"\n    }\n  ],\n  \"model\": \"deepseek-chat\",\n  \"frequency_penalty\": 0,\n  \"max_tokens\": 2048,\n  \"presence_penalty\": 0,\n  \"response_format\": {\n    \"type\": \"text\"\n  },\n  \"stop\": null,\n  \"stream\": false,\n  \"stream_options\": null,\n  \"temperature\": 1,\n  \"top_p\": 1,\n  \"tools\": null,\n  \"tool_choice\": \"none\",\n  \"logprobs\": false,\n  \"top_logprobs\": null\n}", null, "application/json");
+
+            DeepSeekChatRequest msgReq = new DeepSeekChatRequest(model);
+            msgReq.messages.Add(new DeepSeekChatRequestMessage()
+            {
+                content = message,
+                role = "user"
+            });
+            string requestStr = JsonSerializer.Serialize(msgReq);
+
+            var content = new StringContent(requestStr,
+                                    Encoding.UTF8,
+                                    "application/json");
             request.Content = content;
             var response = await client.SendAsync(request);
 
             string jsonContent = await response.Content.ReadAsStringAsync();
             if (jsonContent.Contains("error"))
             {
-                return new Tuple<object, string>(JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekErrorMessage)), "error");
+                return new Tuple<object, string>(JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekErrorMessageReturnValue)), "error");
             }
             else
             {
-                return new Tuple<object, string>(JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekErrorMessage)), "data");
+                return new Tuple<object, string>(JsonSerializer.Deserialize(jsonContent, typeof(DeepSeekChatResponseMessage)), "data");
             }
         }
 

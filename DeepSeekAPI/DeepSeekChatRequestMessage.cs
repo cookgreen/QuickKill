@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DeepSeekAPI
 {
-    public class DeepSeekChatMessage
+    public class DeepSeekChatRequestMessage
     {
         public string content { get; set; } = string.Empty;
         public string role { get; set; } = string.Empty;
@@ -14,7 +14,7 @@ namespace DeepSeekAPI
 
     public class DeepSeekChatRequest
     {
-        public List<DeepSeekChatMessage> messages { get; set; }
+        public List<DeepSeekChatRequestMessage> messages { get; set; }
         public string model {  get; set; }
         public int frequency_penalty {  get; set; }
         public int max_tokens {  get; set; }
@@ -33,7 +33,7 @@ namespace DeepSeekAPI
 
         public DeepSeekChatRequest(string model)
         {
-            messages = new List<DeepSeekChatMessage>();
+            messages = new List<DeepSeekChatRequestMessage>();
             this.model = model;
             frequency_penalty = 0;
             max_tokens = 2048;

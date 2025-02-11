@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace DeepSeekAPI
 {
+    public class DeepSeekErrorMessageReturnValue
+    {
+        public DeepSeekErrorMessage error { get; set; }
+    }
+
     public class DeepSeekErrorMessage
     {
         public string message {  get; set; }
