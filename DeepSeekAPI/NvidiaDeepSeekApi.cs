@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DeepSeekAPI
 {
-    public class NvidiaDeepSeekApi : DeepSeekApi
+    public class NvidiaDeepSeekApi : CommonAIApi
     {
         public override string ProviderName { get { return "Nvidia"; } }
 

@@ -11,17 +11,19 @@ using System.Windows.Forms;
 
 namespace QuickKill
 {
-    public partial class frmDeepSeekChat : Form
+    public partial class frmAIChat : Form
     {
         private System.Timers.Timer timer;
         private IAIApiProvider aiApi;
         private delegate void SetLabelTextDelegate(Label label, string text);
         private SetLabelTextDelegate setLabelTextDelegateObject;
 
-        public frmDeepSeekChat(IAIApiProvider aiApi)
+        public frmAIChat(IAIApiProvider aiApi)
         {
             this.aiApi = aiApi;
             InitializeComponent();
+
+            Text = "Chat with AI - [" + aiApi.ProviderName + "]";
 
             setLabelTextDelegateObject = new SetLabelTextDelegate(SetLabelTextDelegateMethod);
 

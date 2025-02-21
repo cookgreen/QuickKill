@@ -8,7 +8,7 @@ namespace DeepSeekAPI
 {
     public class XAiGrokApi : CommonAIApi
     {
-        public override string ProviderName { get { return "xAI"; } }
+        public override string ProviderName { get { return "Grok"; } }
 
         public XAiGrokApi(string apiKey) : base(apiKey)
         {

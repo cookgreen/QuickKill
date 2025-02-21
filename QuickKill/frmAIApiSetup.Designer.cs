@@ -87,13 +87,13 @@
             // 
             cmbProviders.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProviders.FormattingEnabled = true;
-            cmbProviders.Items.AddRange(new object[] { "DeepSeek", "Nvidia", "xAI" });
+            cmbProviders.Items.AddRange(new object[] { "DeepSeek", "Nvidia", "Grok" });
             cmbProviders.Location = new Point(363, 283);
             cmbProviders.Name = "cmbProviders";
             cmbProviders.Size = new Size(116, 28);
             cmbProviders.TabIndex = 5;
             // 
-            // frmDeepSeekSetup
+            // frmAIApiSetup
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -107,7 +107,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "frmDeepSeekSetup";
+            Name = "frmAIApiSetup";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AI API Setup";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

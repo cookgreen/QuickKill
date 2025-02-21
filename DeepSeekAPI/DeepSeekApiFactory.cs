@@ -25,12 +25,12 @@ namespace DeepSeekAPI
             switch (provider) 
             {
                 case "DeepSeek":
-                    api = new DeepSeekApi(apiKey);
+                    api = new CommonAIApi(apiKey);
                     break;
                 case "Nvidia":
                     api = new NvidiaDeepSeekApi(apiKey);
                     break;
-                case "xAI":
+                case "Grok":
                     api = new XAiGrokApi(apiKey);
                     break;
                 default:

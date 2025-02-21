@@ -65,7 +65,7 @@ namespace QuickKill
 
         private void mnuToolChat_Click(object sender, EventArgs e)
         {
-            frmDeepSeekChat chatWin = new frmDeepSeekChat(aIApiProvider);
+            frmAIChat chatWin = new frmAIChat(aIApiProvider);
             chatWin.ShowDialog();
         }
 

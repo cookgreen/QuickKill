@@ -1,6 +1,6 @@
 ﻿namespace QuickKill
 {
-    partial class frmDeepSeekChat
+    partial class frmAIChat
     {
         /// <summary>
         /// Required designer variable.
