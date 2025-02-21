@@ -131,7 +131,7 @@
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Chat with DeepSeek";
+            Text = "Chat with AI";
             FormClosing += frmDeepSeekChat_FormClosing;
             Load += frmDeepSeekChat_Load;
             ((System.ComponentModel.ISupportInitialize)picHeader).EndInit();

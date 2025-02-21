@@ -11,11 +11,12 @@ using System.Windows.Forms;
 
 namespace QuickKill
 {
-    public partial class frmDeepSeekSetup : Form
+    public partial class frmAIApiSetup : Form
     {
-        public string APIKey { get { return txtAPI.Text; } }
+        private IAIApiProvider aiApi;
+        public IAIApiProvider AiApi { get { return aiApi; } }
 
-        public frmDeepSeekSetup()
+        public frmAIApiSetup()
         {
             InitializeComponent();
             cmbProviders.SelectedIndex = 0;
@@ -32,10 +33,10 @@ namespace QuickKill
                 return;
             }
 
-            DeepSeekApi deepSeekApi = DeepSeekApiFactory.Instance.CreateApiByProvider(
+            aiApi = DeepSeekApiFactory.Instance.CreateApiByProvider(
                 txtAPI.Text, cmbProviders.SelectedItem.ToString());
 
-            var returnVal = await deepSeekApi.GetBalance();
+            var returnVal = await aiApi.GetBalance();
 
             btnOK.Enabled = true;
 

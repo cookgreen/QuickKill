@@ -7,13 +7,13 @@ namespace QuickKill
     public partial class frmMain : Form
     {
         private System.Timers.Timer timer;
-        private DeepSeekApi deepSeekApi;
+        private IAIApiProvider aIApiProvider;
         private delegate void SetLabelTextDelegate(Label label, string text);
         private SetLabelTextDelegate setLabelTextDelegateObject;
 
-        public frmMain(string apikey)
+        public frmMain(IAIApiProvider aIApiProvider)
         {
-            deepSeekApi = new DeepSeekApi(apikey);
+            this.aIApiProvider = aIApiProvider;
             InitializeComponent();
 
             setLabelTextDelegateObject = new SetLabelTextDelegate(SetLabelTextDelegateMethod);
@@ -22,7 +22,7 @@ namespace QuickKill
             timer.AutoReset = true;
             timer.Elapsed += (o, e) =>
             {
-                var balanceInfo = ((DeepSeekBalance)deepSeekApi
+                var balanceInfo = ((DeepSeekBalance)aIApiProvider
                 .GetBalance().Result.Data)
                 .balance_infos[0];
 
@@ -65,7 +65,7 @@ namespace QuickKill
 
         private void mnuToolChat_Click(object sender, EventArgs e)
         {
-            frmDeepSeekChat chatWin = new frmDeepSeekChat(deepSeekApi);
+            frmDeepSeekChat chatWin = new frmDeepSeekChat(aIApiProvider);
             chatWin.ShowDialog();
         }
 

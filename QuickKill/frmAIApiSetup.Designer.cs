@@ -1,6 +1,6 @@
 ﻿namespace QuickKill
 {
-    partial class frmDeepSeekSetup
+    partial class frmAIApiSetup
     {
         /// <summary>
         /// Required designer variable.
@@ -87,7 +87,7 @@
             // 
             cmbProviders.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProviders.FormattingEnabled = true;
-            cmbProviders.Items.AddRange(new object[] { "DeepSeek", "Nvidia" });
+            cmbProviders.Items.AddRange(new object[] { "DeepSeek", "Nvidia", "xAI" });
             cmbProviders.Location = new Point(363, 283);
             cmbProviders.Name = "cmbProviders";
             cmbProviders.Size = new Size(116, 28);
@@ -109,7 +109,7 @@
             MinimizeBox = false;
             Name = "frmDeepSeekSetup";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "DeepSeek Setup";
+            Text = "AI API Setup";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

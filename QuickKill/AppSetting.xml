@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <AppSetting>
-  <DeepSeek apikey="YourApiKey"></DeepSeek>
+  <AI provider="DeepSeek" apikey="YourApiKey"></AI>
 </AppSetting>

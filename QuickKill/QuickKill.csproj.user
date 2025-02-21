@@ -4,7 +4,7 @@
     <Compile Update="frmDeepSeekChat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmDeepSeekSetup.cs">
+    <Compile Update="frmAIApiSetup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmMain.cs">

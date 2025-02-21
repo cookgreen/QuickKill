@@ -19,18 +19,26 @@ namespace DeepSeekAPI
             this.data = data;
         }
     }
+    public class DeepSeekApi : CommonAIApi
+    {
+        public override string ProviderName { get { return "DeepSeek"; } }
+        public DeepSeekApi(string apiKey) : base(apiKey)
+        {
+            baseUrl = "https://api.deepseek.com";
+        }
+    }
 
-    public class DeepSeekApi : IDeepSeekApiProvider
+    public class CommonAIApi : IAIApiProvider
     {
         private string apiKey;
         protected string baseUrl;
 
-        public virtual string ProviderName { get { return "DeepSeek"; } }
+        public virtual string ProviderName { get { return "UNKNOWN"; } }
         public string ApiKey { get { return apiKey; } }
 
-        public DeepSeekApi(string apiKey)
+        public CommonAIApi(string apiKey)
         {
-            baseUrl = "https://api.deepseek.com";
+            baseUrl = "YourBaseApiUrl";
             this.apiKey = apiKey;
         }
 

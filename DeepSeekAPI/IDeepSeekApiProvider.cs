@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace DeepSeekAPI
 {
-    public interface IDeepSeekApiProvider
+    public interface IAIApiProvider
     {
         public string ProviderName {  get; }
         public string ApiKey { get; }
+
+        Task<DeepSeekCallResult> GetModelList();
+
+        Task<DeepSeekCallResult> Chat(string message, string model);
+
+        Task<DeepSeekCallResult> GetBalance();
     }
 }

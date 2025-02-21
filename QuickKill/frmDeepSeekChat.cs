@@ -14,13 +14,13 @@ namespace QuickKill
     public partial class frmDeepSeekChat : Form
     {
         private System.Timers.Timer timer;
-        private DeepSeekApi deepSeekApi;
+        private IAIApiProvider aiApi;
         private delegate void SetLabelTextDelegate(Label label, string text);
         private SetLabelTextDelegate setLabelTextDelegateObject;
 
-        public frmDeepSeekChat(DeepSeekApi deepSeekApi)
+        public frmDeepSeekChat(IAIApiProvider aiApi)
         {
-            this.deepSeekApi = deepSeekApi;
+            this.aiApi = aiApi;
             InitializeComponent();
 
             setLabelTextDelegateObject = new SetLabelTextDelegate(SetLabelTextDelegateMethod);
@@ -29,7 +29,7 @@ namespace QuickKill
             timer.AutoReset = true;
             timer.Elapsed += (o, e) =>
             {
-                var balanceInfo = ((DeepSeekBalance)deepSeekApi
+                var balanceInfo = ((DeepSeekBalance)aiApi
                 .GetBalance().Result.Data)
                 .balance_infos[0];
 
@@ -62,7 +62,7 @@ namespace QuickKill
 
         private async void getModels()
         {
-            var retValue = await deepSeekApi.GetModelList();
+            var retValue = await aiApi.GetModelList();
             if (retValue.Result)
             {
                 DeepSeekModelReturnValue ret = retValue.Data as DeepSeekModelReturnValue;
@@ -87,7 +87,7 @@ namespace QuickKill
 
             chatList.Items.Add(txtChatMessage.Text);
 
-            var retVal = await deepSeekApi.Chat(txtChatMessage.Text, cmbModelList.SelectedItem.ToString());
+            var retVal = await aiApi.Chat(txtChatMessage.Text, cmbModelList.SelectedItem.ToString());
             if (!retVal.Result)
             {
                 var msg = (DeepSeekErrorMessageReturnValue)retVal.Data;

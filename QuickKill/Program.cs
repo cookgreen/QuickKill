@@ -12,10 +12,10 @@ namespace QuickKill
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            frmDeepSeekSetup deepSeekSetupWin = new frmDeepSeekSetup();
-            if (deepSeekSetupWin.ShowDialog() == DialogResult.OK)
+            frmAIApiSetup apiApiSetupWin = new frmAIApiSetup();
+            if (apiApiSetupWin.ShowDialog() == DialogResult.OK)
             {
-                frmMain mainWindow = new frmMain(deepSeekSetupWin.APIKey);
+                frmMain mainWindow = new frmMain(apiApiSetupWin.AiApi);
                 Application.Run(mainWindow);
             }
         }

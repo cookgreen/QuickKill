@@ -19,9 +19,9 @@ namespace DeepSeekAPI
             }
         }
 
-        public DeepSeekApi CreateApiByProvider(string apiKey, string provider)
+        public IAIApiProvider CreateApiByProvider(string apiKey, string provider)
         {
-            DeepSeekApi api;
+            IAIApiProvider api;
             switch (provider) 
             {
                 case "DeepSeek":
@@ -29,6 +29,9 @@ namespace DeepSeekAPI
                     break;
                 case "Nvidia":
                     api = new NvidiaDeepSeekApi(apiKey);
+                    break;
+                case "xAI":
+                    api = new XAiGrokApi(apiKey);
                     break;
                 default:
                     throw new ArgumentException("Can't find specific provider '" + provider + "'!");
