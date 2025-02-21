@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pictureBox1 = new PictureBox();
+            picBanner = new PictureBox();
             label1 = new Label();
             txtAPI = new TextBox();
             btnCancel = new Button();
             btnOK = new Button();
             cmbProviders = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picBanner).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // picBanner
             // 
-            pictureBox1.Image = Properties.Resources.deepseek_logo;
-            pictureBox1.Location = new Point(12, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(467, 265);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            picBanner.Image = Properties.Resources.deepseek_logo;
+            picBanner.Location = new Point(12, 12);
+            picBanner.Name = "picBanner";
+            picBanner.Size = new Size(467, 265);
+            picBanner.SizeMode = PictureBoxSizeMode.Zoom;
+            picBanner.TabIndex = 0;
+            picBanner.TabStop = false;
             // 
             // label1
             // 
@@ -92,6 +92,7 @@
             cmbProviders.Name = "cmbProviders";
             cmbProviders.Size = new Size(116, 28);
             cmbProviders.TabIndex = 5;
+            cmbProviders.SelectedIndexChanged += cmbProviders_SelectedIndexChanged;
             // 
             // frmAIApiSetup
             // 
@@ -103,21 +104,23 @@
             Controls.Add(btnCancel);
             Controls.Add(txtAPI);
             Controls.Add(label1);
-            Controls.Add(pictureBox1);
+            Controls.Add(picBanner);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmAIApiSetup";
+            ShowIcon = false;
+            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AI API Setup";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picBanner).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
+        private PictureBox picBanner;
         private Label label1;
         private TextBox txtAPI;
         private Button btnCancel;

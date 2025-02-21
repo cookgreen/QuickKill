@@ -55,5 +55,28 @@ namespace QuickKill
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void cmbProviders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idx = cmbProviders.SelectedIndex;
+            switch (idx)
+            {
+                case 0:
+                    picBanner.Image = new Bitmap(
+                        Path.Combine(Environment.CurrentDirectory, "Images/banner-deepseek.png"));
+                    Text = "DeepSeek AI Setup";
+                    break;
+                case 1:
+                    picBanner.Image = new Bitmap(
+                        Path.Combine(Environment.CurrentDirectory, "Images/banner-nvidia-deepseek.png"));
+                    Text = "Nvidia DeepSeek AI Setup";
+                    break;
+                case 2:
+                    picBanner.Image = new Bitmap(
+                        Path.Combine(Environment.CurrentDirectory, "Images/banner-grok.png"));
+                    Text = "Grok AI Setup";
+                    break;
+            }
+        }
     }
 }

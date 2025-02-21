@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             lbBalanceText = new Label();
             lbBalance = new Label();
             menu = new MenuStrip();
@@ -103,6 +104,7 @@
             Controls.Add(lbBalance);
             Controls.Add(lbBalanceText);
             Controls.Add(menu);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menu;
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;

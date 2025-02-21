@@ -60,6 +60,21 @@ namespace QuickKill
 
         private void frmDeepSeekChat_Load(object sender, EventArgs e)
         {
+            switch (aiApi.ProviderName) 
+            {
+                case "Deepseek":
+                    picHeader.Image = new Bitmap(Path.Combine(
+                        Environment.CurrentDirectory, "header-deepseek.png"));
+                    break;
+                case "Nvidia":
+                    picHeader.Image = new Bitmap(Path.Combine(
+                        Environment.CurrentDirectory, "header-nvidia-deepseek.png"));
+                    break;
+                case "Grok":
+                    picHeader.Image = new Bitmap(Path.Combine(
+                        Environment.CurrentDirectory, "header-grok.png"));
+                    break;
+            }
         }
 
         private async void getModels()
