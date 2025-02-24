@@ -26,7 +26,7 @@ official Site: [Nvidia Platform](https://build.nvidia.com/deepseek-ai/deepseek-r
 ### Grok
 Grok is a powerful AI LLM released by Elon Musk's xAI
   
-Official Site:  [xAI Platform](https://console.x.ai/team/)
+Official Site:  [xAI Platform](https://x.ai/)
 
 ## License
 GNU GPLv3  
